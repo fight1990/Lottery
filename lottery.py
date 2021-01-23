@@ -57,7 +57,7 @@ def getPageNum(url):
         # ===============================================================================
 
 
-file_path = '/Users/Butcher/Desktop/test/{}'
+file_path = 'C:\cs\ws\Lottery\{}'
 
 # 获取每页双色球的信息
 def getText(url):
