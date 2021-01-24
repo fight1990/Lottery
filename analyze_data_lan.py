@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # 读取newdata.txt文件
-desktop_path = '/Users/Butcher/Desktop/test/'
+desktop_path = 'C:\cs\ws\Lottery/'
 
 df = pd.read_table(desktop_path+"hun.txt",header=None, sep=',')
 # print df

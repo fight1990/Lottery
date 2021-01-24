@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # 读取文件
-desktop_path = '/Users/Butcher/Desktop/test/'
+desktop_path = 'C:\cs\ws\Lottery/'
 
 df = pd.read_table(desktop_path+'hun.txt', header=None, sep=',')
 # print df
@@ -39,7 +39,7 @@ plt.figure(figsize=(10, 6), dpi=70)
 plt.legend(loc='best', )
 
 # plt.plot(fenzu,color='red')
-plt.bar(x, y, alpha=.5, color='r', width=0.8)
+plt.bar(str(x), y, alpha=.5, color='r', width=0.8)
 plt.title('The red ball number')
 plt.xlabel('red number')
 plt.ylabel('times')

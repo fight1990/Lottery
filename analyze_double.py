@@ -10,7 +10,7 @@ from sklearn import datasets,linear_model
 from sklearn.linear_model import LogisticRegression
 
 #读取文件
-desktop_path = '/Users/Butcher/Desktop/test/'
+desktop_path = 'C:\cs\ws\Lottery/'
 
 df = pd.read_table(desktop_path+'hun.txt',header=None,sep=',')
 
@@ -21,7 +21,18 @@ tdate = sorted(df.loc[:,0])
 # Function to red number to csv file
 def RedToCsv(h_num,num,csv_name):
     h_num = df.loc[:,num:num].values
-    h_num = h_num[50::-1]
+    h_num = h_num[5000::-1]
+    #print(len(h_num))
+    print(h_num.shape)
+    cnt = 0
+    #for i in range(len(h_num)):
+        #print(h_num[i]) 
+        #h_num[i] = str(h_num[i]).replace(" ",'').replace("'",'').replace(')','').replace('[','').replace(']','').replace('"','')
+        #print(h_num[i])
+        #cnt = cnt + 1
+        #print(cnt)
+    h_num.reshape(-1,1)
+    print(h_num.shape)
     renum2 = pd.DataFrame(h_num)
     renum2.to_csv(csv_name,header=None)
     fp = open(csv_name,'r')
@@ -53,7 +64,12 @@ def get_data(file_name):
     Y_parameter = []
     for single_square_feet ,single_price_value in zip(data['numid'],data['number']):
         X_parameter.append([float(single_square_feet)])
-        Y_parameter.append(float(single_price_value))
+        #print(single_price_value)#.replace(" ",'').replace("'",'').replace(')','').replace('[','').replace(']','').replace('"','')
+        #print(float(single_price_value.replace("'",'')))
+        if(isinstance(single_price_value,str)):
+            Y_parameter.append(float(single_price_value.replace("'",'').replace(")",'')))
+        else:
+            Y_parameter.append(float(single_price_value))
     return X_parameter,Y_parameter
 
 
@@ -75,10 +91,12 @@ def linear_model_main(X_parameters,Y_parameters,predict_value):
 #获取预测结果函数
 def get_predicted_num(inputfile,num):
     X,Y = get_data(inputfile)
-    predictvalue = 51
+    #predictvalue = 51
+    predictvalue = 5000
+    predictvalue = np.array(predictvalue).reshape(1, -1)
     result = linear_model_main(X,Y,predictvalue)
-    print("num "+ str(num) +" Intercept value " , result['intercept'])
-    print("num "+ str(num) +" coefficient" , result['coefficient'])
+    #print("num "+ str(num) +" Intercept value " , result['intercept'])
+    #print("num "+ str(num) +" coefficient" , result['coefficient'])
     print("num "+ str(num) +" Predicted value: ",result['predicted_value'])
 
 
